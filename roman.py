@@ -16,14 +16,17 @@ def roman_to_integer(roman):
     
     return result
 
+
 def main():
-    roman_input = input("Enter a Roman numeral: ").upper()
-    
-    try:
-        result = roman_to_integer(roman_input)
-        print(f"The integer equivalent of {roman_input} is: {result}")
-    except KeyError:
-        print("Invalid Roman numeral input. Please provide a valid Roman numeral.")
+    while True:
+        roman_input = input("Enter a Roman numeral: ").upper()
+        
+        try:
+            result = roman_to_integer(roman_input)
+            print(f"The integer equivalent of {roman_input} is: {result}")
+            break  # Break out of the loop if input is valid
+        except KeyError:
+            print("Invalid Roman numeral input. Please provide a valid Roman numeral. Try again.")
 
 if __name__ == "__main__":
     main()
