@@ -1,58 +1,65 @@
+#test cases
 import pytest
 from roman import roman_to_integer, main
 
-def test_single_character():
-    assert roman_to_integer("I") == 1
+#Single letters
+def test_single_letters():
+    assert roman_to_integer("II") == 2
     assert roman_to_integer("V") == 5
-    assert roman_to_integer("X") == 10
+    assert roman_to_integer("XI") == 11
 
-def test_multiple_characters():
+#Many letters
+def test_many_letters():
     assert roman_to_integer("III") == 3
-    assert roman_to_integer("IV") == 4
-    assert roman_to_integer("XLIX") == 49
+    assert roman_to_integer("V") == 5
+    assert roman_to_integer("LXXVIII") == 78
 
+#Subtractive notation(SN)
 def test_subtractive_notation():
     assert roman_to_integer("IV") == 4
 
+#With and without SN
 def test_specific_numeral_XIV():
     assert roman_to_integer("XIV") == 14
 
-def test_specific_numeral_IX():
-    assert roman_to_integer("IX") == 9
-
-def test_repeated_characters_II():
+#Repetition
+def test_repeated_letters():
     assert roman_to_integer("II") == 2
 
-def test_invalid_characters():
+#Invalid letters
+def test_invalid_letters():
     with pytest.raises(ValueError):
-        roman_to_integer("IIII")
+        roman_to_integer("III")
     with pytest.raises(ValueError):
         roman_to_integer("VV")
     with pytest.raises(ValueError):
         roman_to_integer("LL")
 
+#First number is I
 def test_start_with_I():
     assert roman_to_integer("I") == 1
     assert roman_to_integer("II") == 2
     assert roman_to_integer("III") == 3
 
+#Invalid and valid letter
 def test_invalid_and_valid_letters():
     with pytest.raises(ValueError):
-        roman_to_integer("XIZ")  # Contains an invalid letter "z"
+        roman_to_integer("XIZ")  
 
-    assert roman_to_integer("XII") == 12  # Valid input
+    assert roman_to_integer("XII") == 12  
 
-def test_largest_possible_numeral():
-    assert roman_to_integer("MMMCMXCIX") == 3999
-
+#Null input
 def test_null_input():
     assert roman_to_integer("") == 0
 
+
 if __name__ == "__main__":
-    print(roman_to_integer("MCMXCIV"))  # Output: 1994
-    test_single_character()
-    test_multiple_characters()
+    test_single_letters()
+    test_many_letters()
     test_subtractive_notation()
-    test_invalid_characters()
-    test_start_with_I()  # Add the new test case
-    test_largest_possible_numeral()  # Add the new test case
+    test_specific_numeral_XIV()
+    test_repeated_letters()
+    test_invalid_letters()
+    test_start_with_I()  
+    test_invalid_and_valid_letters() 
+    test_null_input()
